@@ -30,6 +30,7 @@ const uiModule = (function () {
         `;
       });
       let seasonList = '';
+      console.log(show.seasons);
       show.seasons.forEach(({startDate, endDate}) =>{
         seasonList += `
         <div class="season-item">${startDate} - ${endDate}</div>

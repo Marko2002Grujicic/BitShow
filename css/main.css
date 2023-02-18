@@ -51,7 +51,7 @@
   height: 80%;
   object-fit: cover;
 }
-p {
+#show-list p {
   color: blue;
   font-size: 16px;
   font-weight: 700;

@@ -1,15 +1,13 @@
 const dataModule = (function () {
 
     class TvShow {
-      constructor(name, id, coverUrl, cast, summary, crew, aka, episode) {
+      constructor(name, id, coverUrl, cast, summary, seasons) {
         this.id = id;
         this.name = name;
         this.coverUrl = coverUrl;
         this.cast = cast;
         this.summary = summary;
-        this.crew = crew;
-        this.aka = aka;
-        this.episode = episode;
+        this.seasons = seasons
       }
     }
     class Season{
@@ -48,7 +46,7 @@ const dataModule = (function () {
         return res.json();
       })
       .then(function(rawTvShow){
-        const tvSeasons = rawTvShow._embedded.seasons.map(
+        const seasons = rawTvShow._embedded.seasons.map(
           (s) => new Season (s.premiereDate, s.endDate)
         );
         const cast = rawTvShow._embedded.cast.map((a) => a.person.name);
@@ -56,9 +54,9 @@ const dataModule = (function () {
           rawTvShow.name,
           rawTvShow.id,
           rawTvShow.image.original,
-          rawTvShow.summary,
           cast,
-          tvSeasons
+          rawTvShow.summary,
+          seasons
         );
       });
     };
