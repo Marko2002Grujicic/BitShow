@@ -30,16 +30,16 @@ const uiModule = (function () {
         `;
       });
       let seasonList = '';
-      console.log(show.seasons);
-      show.seasons.forEach(({startDate, endDate}) =>{
+      show.seasons.forEach(({premiereDate, endDate}) =>{
         seasonList += `
-        <div class="season-item">${startDate} - ${endDate}</div>
+        <div class="season-item">${premiereDate} - ${endDate}</div>
         `
       });
+      console.log(seasonList);
       const finalHtml = `
       <h1>${show.name}</h1>
       <div class="detail-wrapper">
-        <img src="${show.coverUrl}" alt="show cover"/>
+        <img src="${show.coverUrl}" alt="show cover" class="single-page-cover"/>
         <div class="list-wrapper">
           <h2>Seasons</h2>
           ${seasonList}
