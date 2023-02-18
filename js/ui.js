@@ -50,8 +50,10 @@ const uiModule = (function () {
           ${castListHtml}
         </ul>
       </div>
+      <div class="show-details">
       <h2>Show Details</h2>
       ${show.summary}
+      </div>
       `;
       mainContentWrapperEl.innerHTML = finalHtml;
     };
