@@ -1,13 +1,16 @@
 const dataModule = (function () {
 
     class TvShow {
-      constructor(name, id, coverUrl, cast, summary, seasons) {
+      constructor(name, id, coverUrl, cast, summary, seasons, crew, episodes, akas) {
         this.id = id;
         this.name = name;
         this.coverUrl = coverUrl;
         this.cast = cast;
         this.summary = summary;
-        this.seasons = seasons
+        this.seasons = seasons;
+        this.crew = crew;
+        this.episodes = episodes;
+        this.akas = akas;
       }
     }
     class Season{
@@ -23,7 +26,8 @@ const dataModule = (function () {
           return res.json();
         })
         .then(function (showsRawObjects) {
-          return showsRawObjects.map(({ name, id, image }) => new TvShow(name, id, image.original));
+          let showsSliced = showsRawObjects.slice(0, 50);
+          return showsSliced.map(({ name, id, image }) => new TvShow(name, id, image.original));
         });
     };
   
@@ -33,7 +37,8 @@ const dataModule = (function () {
           return res.json();
         })
         .then(function (showsRawObjects) {
-          return showsRawObjects.map(({ show }) => {
+          let slicedShows = showsRawObjects.slice(0,10);
+          return slicedShows.map(({ show }) => {
             const { name, id, image } = show;
             const imageToUse = image ? image.original : '';
             return new TvShow(name, id, imageToUse);
@@ -41,28 +46,36 @@ const dataModule = (function () {
         });
     };
     const getSingleTvShow = (id) => {
-      return fetch(`https://api.tvmaze.com/shows/${id}?embed[]=seasons&embed[]=cast`)
+      return fetch(`https://api.tvmaze.com/shows/${id}?embed[]=seasons&embed[]=cast&embed[]=crew&embed[]=episodes&embed[]=akas`)
       .then(function(res){
         return res.json();
       })
       .then(function(rawTvShow){
+        console.log(rawTvShow._embedded.akas);
+        // Seasons
         const seasons = rawTvShow._embedded.seasons.map(
           (s) => new Season (s.premiereDate, s.endDate)
         );
+        // Cast
         const cast = rawTvShow._embedded.cast.map((a) => a.person.name);
+        // Crew
+        const crew = rawTvShow._embedded.crew.map((b) => b.type + ": " + b.person.name );
+        // Episode list
+        const episodeList = rawTvShow._embedded.episodes.map((c) => c.name + ", Season:" + c.season + ", Episode:" + c.number);
+        const akas = rawTvShow._embedded.akas.map((d) => "AKA: " + d.name +", " + "Country: " + d.country.name);
         return new TvShow(
           rawTvShow.name,
           rawTvShow.id,
           rawTvShow.image.original,
           cast,
           rawTvShow.summary,
-          seasons
+          seasons,
+          crew,
+          episodeList,
+          akas
         );
       });
     };
-        
-       
-    
   
     return { getShows, searchShow, getSingleTvShow };
   })();

@@ -1,7 +1,8 @@
 const uiModule = (function () {
     const mainContentWrapperEl = document.querySelector('#main-content');
     const searchDropdownEl = document.querySelector('#search-dropdown');
-  
+    const accordion = document.querySelector('.show-details');
+
     const renderHomePage = (shows) => {
       let html = `
               <h1>All TV Shows</h1>
@@ -23,12 +24,17 @@ const uiModule = (function () {
     }
   
     const renderSingleTvShowPage = (show) => {
+      // Cast
       let castListHtml = '';
+      let castCounter = 0;
       show.cast.forEach((string) =>{
-        castListHtml += `
-        <li class="cast-item">${string}</li>
-        `;
+        if (castCounter < 10){
+          castListHtml += `
+          <li class="cast-item">${string}</li>
+          `
+        }
       });
+      // Seasons
       let seasonList = '';
       let numberOfSeasons = 0;
       show.seasons.forEach(({premiereDate, endDate}) =>{
@@ -37,8 +43,30 @@ const uiModule = (function () {
         <li class="season-item">${premiereDate} - ${endDate}</li>
         `
       });
-      console.log(seasonList);
-      // let numberOfSeasons = function
+      // Crew
+     let crewMembers = '';
+     let counter = 0;
+     show.crew.forEach((string) => {
+      counter +=1;
+      if (counter < 6){
+        crewMembers += `
+        <li class="cast-item">${string}</li>
+        `
+      }
+      else {
+        return;
+      };
+     })
+     let listOfEpisodes = '';
+     show.episodes.forEach((string) =>{
+      listOfEpisodes += `<p class="episodes">${string}</p>`
+     })
+     // Akas
+     let listOfAkas = '';
+     show.akas.forEach((string) =>{
+      listOfAkas += `<p class="akas">${string}</p>`
+     })
+    
       const finalHtml = `
       <h1>${show.name}</h1>
       <div class="detail-wrapper">
@@ -48,11 +76,25 @@ const uiModule = (function () {
           ${seasonList}
           <h2>Cast</h2>
           ${castListHtml}
+          <h2>Crew</h2>
+          ${crewMembers}
         </ul>
       </div>
       <div class="show-details">
-      <h2>Show Details</h2>
-      ${show.summary}
+        <h2>Show Details</h2>
+        ${show.summary}
+        </br>
+        <div class="more">
+          
+          <div class="akas-list">
+            <h2> List of A.K.A.S</h2>
+            ${listOfAkas}
+          </div>
+          <div class="episode-list">
+            <h2> Episode List</h2>
+            ${listOfEpisodes}
+          </div>
+        </div>
       </div>
       `;
       mainContentWrapperEl.innerHTML = finalHtml;

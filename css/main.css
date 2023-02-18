@@ -2,6 +2,7 @@
   padding: 0;
   margin: 0%;
   box-sizing: content-box;
+  font-family: "Times New Roman", Times, serif;
 }
 
 #wrapper {
@@ -9,20 +10,32 @@
   flex-direction: column;
   align-items: center;
 }
-
-#header {
+#home-button:hover {
+  cursor: pointer;
+}
+.header-wrapper {
   color: white;
   height: 70px;
   background-color: #242424;
+  align-self: stretch;
+  padding: 0 24px;
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  padding: 0 24px;
-  align-self: stretch;
+  justify-content: center;
+}
+#header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 1200px;
+}
+#header input {
+  padding: 5px;
+  border-radius: 5px;
+  width: 100%;
 }
 
 #main-content {
-  height: calc(100vh - 140px);
   overflow: auto;
   padding: 24px 0;
   display: flex;
@@ -43,6 +56,11 @@
 
 .show-item {
   width: 380px;
+  border: 1px solid #242424;
+  border-radius: 5px;
+}
+.show-item:hover {
+  cursor: pointer;
 }
 
 .show-item img {
@@ -54,6 +72,12 @@
   color: blue;
   font-size: 20px;
   font-weight: 700;
+  text-align: center;
+}
+
+#search-wrapper {
+  position: relative;
+  width: 200px;
 }
 
 #footer {
@@ -66,16 +90,16 @@
   align-self: stretch;
 }
 #search-dropdown {
-  border: 1px solid black;
   color: black;
   background-color: white;
+  width: 200px;
+  border-radius: 5px;
+  cursor: pointer;
   position: absolute;
-  right: 350px;
-  top: 50px;
-  max-width: 200px;
-  overflow: hidden;
 }
-
+.search-item {
+  border-bottom: 1px solid #3c3b3b;
+}
 .detail-wrapper {
   display: flex;
   gap: 30px;
@@ -84,6 +108,9 @@
 
 .single-page-cover {
   width: 50%;
+  height: 50%;
+  min-width: 500px;
+  min-height: 700px;
 }
 
 .list-wrapper h2 {
@@ -98,4 +125,22 @@
   font-size: 25px;
   text-align: left;
   padding-bottom: 10px;
+  padding-top: 10px;
+}
+.show-details p {
+  font-size: 20px;
+}
+.more {
+  display: flex;
+  justify-content: center;
+}
+
+.episode-list {
+  overflow: auto;
+  max-height: 400px;
+  width: 50%;
+  line-height: 2rem;
+}
+.akas-list {
+  width: 50%;
 }

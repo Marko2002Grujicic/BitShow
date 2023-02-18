@@ -3,7 +3,7 @@
     const searchDropdownEl = document.querySelector('#search-dropdown');
     const mainContentWrapper = document.querySelector("#main-content");
     const homeButtonEl = document.querySelector("#home-button")
-  
+
     const onSearch = (e) => {
       const term = e.target.value;
       data.searchShow(term).then((shows) => {
@@ -41,7 +41,7 @@
     }
     onClickHomeButtonHander();
     searchInput.addEventListener('keyup', onSearch);
-    searchInput.addEventListener('blur', ui.clearDropdown);
+    searchInput.addEventListener('blur', ui.clearDropdown)
     searchDropdownEl.addEventListener("click", onSearchDropdownClick);
     homeButtonEl.addEventListener("click",onClickHomeButtonHander);
     mainContentWrapper.addEventListener("click", onSingleTvShowClick)
