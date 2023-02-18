@@ -17,7 +17,7 @@
   background-color: #242424;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   padding: 0 24px;
   align-self: stretch;
 }
@@ -39,6 +39,7 @@
   /*align-items: center;*/
   width: 1000px;
   padding-top: 24px;
+  padding-left: 24px;
 }
 
 .show-item {
@@ -51,9 +52,8 @@
   object-fit: cover;
 }
 p {
-  text-align: center;
-  color: black;
-  font-size: 14px;
+  color: blue;
+  font-size: 16px;
   font-weight: 700;
 }
 
@@ -71,7 +71,7 @@ p {
   color: black;
   background-color: white;
   position: absolute;
-  right: 5px;
+  right: 350px;
   top: 50px;
   max-width: 200px;
   overflow: hidden;
