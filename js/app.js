@@ -11,16 +11,18 @@
         ui.renderSearchDropdown(shows);
       });
     };
-    
+
     const onSearchDropdownClick = (e) => {
       if (e.target.getAttribute('class') !== 'search-item'){
         return;
       }
+      const id = e.target.getAttribute("id");
       ui.clearDropdown();
-      const id = event.target.getAttribute("id");
       data.getSingleTvShow(id).then((show) => {
         ui.renderSingleTvShowPage(show)
+        
       });
+       
     }
     
     const onSingleTvShowClick = (e) => {
@@ -41,7 +43,6 @@
     }
     onClickHomeButtonHander();
     searchInput.addEventListener('keyup', onSearch);
-    searchInput.addEventListener('blur', ui.clearDropdown)
     searchDropdownEl.addEventListener("click", onSearchDropdownClick);
     homeButtonEl.addEventListener("click",onClickHomeButtonHander);
     mainContentWrapper.addEventListener("click", onSingleTvShowClick)

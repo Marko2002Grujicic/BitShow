@@ -26,7 +26,8 @@ const dataModule = (function () {
           return res.json();
         })
         .then(function (showsRawObjects) {
-          let showsSliced = showsRawObjects.slice(0, 50);
+          const topRatedShows = showsRawObjects.filter(show => show.rating.average).sort((a,b)=> b.rating.average - a.rating.average)
+          let showsSliced = topRatedShows.slice(0, 50);
           return showsSliced.map(({ name, id, image }) => new TvShow(name, id, image.original));
         });
     };
@@ -36,7 +37,7 @@ const dataModule = (function () {
         .then(function (res) {
           return res.json();
         })
-        .then(function (showsRawObjects) {
+        .then(function (showsRawObjects) { 
           let slicedShows = showsRawObjects.slice(0,10);
           return slicedShows.map(({ show }) => {
             const { name, id, image } = show;
@@ -51,7 +52,6 @@ const dataModule = (function () {
         return res.json();
       })
       .then(function(rawTvShow){
-        console.log(rawTvShow._embedded.akas);
         // Seasons
         const seasons = rawTvShow._embedded.seasons.map(
           (s) => new Season (s.premiereDate, s.endDate)
@@ -62,7 +62,11 @@ const dataModule = (function () {
         const crew = rawTvShow._embedded.crew.map((b) => b.type + ": " + b.person.name );
         // Episode list
         const episodeList = rawTvShow._embedded.episodes.map((c) => c.name + ", Season:" + c.season + ", Episode:" + c.number);
-        const akas = rawTvShow._embedded.akas.map((d) => "AKA: " + d.name +", " + "Country: " + d.country.name);
+        if (rawTvShow._embedded.akas !== undefined ){
+          var akas = "";
+        } else{
+          var akas = rawTvShow._embedded.akas.map((d) => "AKA: " + d.name +", " + "Country: " + d.country.name);
+        }
         return new TvShow(
           rawTvShow.name,
           rawTvShow.id,

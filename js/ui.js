@@ -1,7 +1,7 @@
 const uiModule = (function () {
     const mainContentWrapperEl = document.querySelector('#main-content');
     const searchDropdownEl = document.querySelector('#search-dropdown');
-    const accordion = document.querySelector('.show-details');
+
 
     const renderHomePage = (shows) => {
       let html = `
@@ -63,9 +63,13 @@ const uiModule = (function () {
      })
      // Akas
      let listOfAkas = '';
-     show.akas.forEach((string) =>{
-      listOfAkas += `<p class="akas">${string}</p>`
-     })
+     if (Array.isArray(show.akas === true)){
+      show.akas.forEach((string) =>{
+        listOfAkas += `<p class="akas">${string}</p>`
+       })
+     };
+    
+     
     
       const finalHtml = `
       <h1>${show.name}</h1>
