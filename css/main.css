@@ -86,3 +86,15 @@
 .single-page-cover {
   width: 50%;
 }
+
+.list-wrapper {
+  line-height: 2rem;
+}
+
+.list-wrapper h2 {
+  font-size: 25px;
+  padding-bottom: 15px;
+}
+.list-wrapper li {
+  margin-left: 50px;
+}

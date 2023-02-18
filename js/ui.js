@@ -26,26 +26,29 @@ const uiModule = (function () {
       let castListHtml = '';
       show.cast.forEach((string) =>{
         castListHtml += `
-        <div class="cast-item">${string}</div>
+        <li class="cast-item">${string}</li>
         `;
       });
       let seasonList = '';
+      let numberOfSeasons = 0;
       show.seasons.forEach(({premiereDate, endDate}) =>{
+        numberOfSeasons += 1;
         seasonList += `
-        <div class="season-item">${premiereDate} - ${endDate}</div>
+        <li class="season-item">${premiereDate} - ${endDate}</li>
         `
       });
       console.log(seasonList);
+      // let numberOfSeasons = function
       const finalHtml = `
       <h1>${show.name}</h1>
       <div class="detail-wrapper">
         <img src="${show.coverUrl}" alt="show cover" class="single-page-cover"/>
-        <div class="list-wrapper">
-          <h2>Seasons</h2>
+        <ul class="list-wrapper">
+          <h2>Seasons(${numberOfSeasons})</h2>
           ${seasonList}
           <h2>Cast</h2>
           ${castListHtml}
-        </div>
+        </ul>
       </div>
       <h2>Show Details</h2>
       ${show.summary}
