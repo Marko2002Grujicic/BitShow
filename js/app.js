@@ -36,15 +36,15 @@
       })
     }
 
-    const onClickHomeButtonHander = () => {
+    const onClickHomeButtonHandler = () => {
       data.getShows().then((shows) => {
         ui.renderHomePage(shows);
       })
     }
-    onClickHomeButtonHander();
+    onClickHomeButtonHandler();
     searchInput.addEventListener('keyup', onSearch);
     searchDropdownEl.addEventListener("click", onSearchDropdownClick);
-    homeButtonEl.addEventListener("click",onClickHomeButtonHander);
+    homeButtonEl.addEventListener("click",onClickHomeButtonHandler);
     mainContentWrapper.addEventListener("click", onSingleTvShowClick)
 
   })(dataModule, uiModule);

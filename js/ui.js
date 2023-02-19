@@ -28,6 +28,7 @@ const uiModule = (function () {
       let castListHtml = '';
       let castCounter = 0;
       show.cast.forEach((string) =>{
+        castCounter += 1;
         if (castCounter < 10){
           castListHtml += `
           <li class="cast-item">${string}</li>
