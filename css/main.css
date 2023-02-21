@@ -5,7 +5,7 @@
   box-sizing: content-box;
   font-family: "Times New Roman", Times, serif;
 }
-/* Header */
+/* Header, footer, main content */
 
 #wrapper {
   display: flex;
@@ -51,7 +51,7 @@
   align-self: stretch;
   color: white;
 }
-
+/* Show-list & show list and items */
 #show-list {
   display: flex;
   justify-content: center;
@@ -83,7 +83,7 @@
   font-weight: 700;
   text-align: center;
 }
-
+/* Search wrapper, dropdown and search-item */
 #search-wrapper {
   position: relative;
   width: 200px;
@@ -100,6 +100,7 @@
 .search-item {
   border-bottom: 1px solid #3c3b3b;
 }
+/* Single page CSS */
 .detail-wrapper {
   display: flex;
   gap: 30px;
