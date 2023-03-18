@@ -21,7 +21,7 @@ const dataModule = (function () {
     }
   
     const getShows = () => {
-      return fetch('http://api.tvmaze.com/shows')
+      return fetch('https://api.tvmaze.com/shows')
         .then(function (res) {
           return res.json();
         })
